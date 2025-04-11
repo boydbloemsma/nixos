@@ -88,6 +88,7 @@
 
   my.wezterm.enable = true;
   my.codeDir.enable = true;
-
+  
+  my.zsh.enable = true;
   home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
 }

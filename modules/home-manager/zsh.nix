@@ -1,15 +1,23 @@
-{ pkgs, config, ... }: {
-  programs.zsh = {
-    enable = true;
+{ config, lib, ... }: {
 
-    shellAliases = {
-      lg = "lazygit";
-    };
+  options = {
+    my.zsh.enable = lib.mkEnableOption "Enables zsh";
+  };
 
-    oh-my-zsh = {
+  config = lib.mkIf config.my.zsh.enable {
+    programs.zsh = {
       enable = true;
-      theme = "robbyrussell";
-      plugins = [ "git" ];
+
+      shellAliases = {
+        lg = "lazygit";
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        theme = "robbyrussell";
+        plugins = [ "git" ];
+      };
     };
   };
+
 }
