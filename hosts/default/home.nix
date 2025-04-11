@@ -82,7 +82,12 @@
 
   imports = [
     ./../../modules/home-manager/wezterm.nix
+    ./../../modules/home-manager/structure.nix
+    ./../../modules/home-manager/zsh.nix
   ];
 
   my.wezterm.enable = true;
+  my.codeDir.enable = true;
+
+  home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
 }
