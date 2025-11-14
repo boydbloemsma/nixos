@@ -76,8 +76,11 @@
 
   programs.git = {
     enable = true;
-    userName = "Boyd Bloemsma";
-    userEmail = "boydbloemsma@gmail.com";
+
+    settings.user = {
+      name = "Boyd Bloemsma";
+      email = "boydbloemsma@gmail.com";
+    };
   };
 
   imports = [
@@ -88,7 +91,7 @@
 
   my.wezterm.enable = true;
   my.codeDir.enable = true;
-  
+
   my.zsh.enable = true;
   home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
 }
