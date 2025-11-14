@@ -87,10 +87,12 @@
     ./../../modules/home-manager/wezterm.nix
     ./../../modules/home-manager/structure.nix
     ./../../modules/home-manager/zsh.nix
+    ./../../modules/home-manager/zed.nix
   ];
 
   my.wezterm.enable = true;
   my.codeDir.enable = true;
+  my.zed.enable = true;
 
   my.zsh.enable = true;
   home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
