@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-      ./../../modules/nixos/shell.nix
+      ./home-manager.nix
     ];
 
   # Bootloader.
@@ -87,14 +87,6 @@
     packages = with pkgs; [
     #  thunderbird
     ];
-  };
-
-  home-manager = {
-    # also pass inputs to home-manager modules
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "boyd" = import ./home.nix;
-    };
   };
 
   # Install firefox.
