@@ -21,6 +21,13 @@
           ./modules/nixos
         ];
       };
+      zx-1 = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/zx-1/configuration.nix
+          ./modules/nixos
+        ];
+      };
     };
 
     homeManagerModules.default = ./modules/home-manager;

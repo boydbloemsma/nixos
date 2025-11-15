@@ -16,7 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "T480"; # Define your hostname.
+  networking.hostName = "ZX-1"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -118,6 +118,23 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
+  # Nvidia drivers
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.modesetting.enable = true;
+
+  # Install Steam
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+
+  # Improves gaming capabilities
+  programs.gamemode.enable = true;
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -137,4 +154,7 @@
   node.enable = true;
   ai.enable = true;
   kamal.enable = true;
+
+  discord.enable = true;
+  media.enable = true;
 }
