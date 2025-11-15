@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
-    options.my.wezterm.enable = lib.mkEnableOption "Enable WezTerm with custom config";
+    options.wezterm.enable = lib.mkEnableOption "Enable WezTerm with custom config";
 
-    config = lib.mkIf config.my.wezterm.enable {
+    config = lib.mkIf config.wezterm.enable {
         programs.wezterm = {
             enable = true;
 

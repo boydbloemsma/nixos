@@ -1,15 +1,16 @@
 { config, lib, ... }: {
 
     options = {
-        my.zsh.enable = lib.mkEnableOption "Enables zsh";
+      zsh.enable = lib.mkEnableOption "Enables zsh";
     };
 
-    config = lib.mkIf config.my.zsh.enable {
+    config = lib.mkIf config.zsh.enable {
         programs.zsh = {
             enable = true;
 
             shellAliases = {
                 lg = "lazygit";
+                ld = "lazydocker";
                 nvim = "nix run github:boydbloemsma/neovim-flake";
             };
 

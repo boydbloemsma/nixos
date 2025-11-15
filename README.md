@@ -27,3 +27,9 @@ Run the following in the nixos directory if you want to update to a newer NixOS 
 ```sh
 sudo nix flake update
 ```
+
+Remove stale versions of the OS using the following command
+
+```sh
+sudo nix-collect-garbage --delete-older-than 15d
+```

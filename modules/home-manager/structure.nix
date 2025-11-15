@@ -1,7 +1,7 @@
 { config, lib, ... }: {
-  options.my.codeDir.enable = lib.mkEnableOption "Create ~/code directory";
+  options.code-dir.enable = lib.mkEnableOption "Create ~/code directory";
 
-  config = lib.mkIf config.my.codeDir.enable {
+  config = lib.mkIf config.code-dir.enable {
     home.activation.createCodedir = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "${config.home.homeDirectory}/code"
     '';

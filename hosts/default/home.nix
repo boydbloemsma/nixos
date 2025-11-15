@@ -83,10 +83,10 @@
     };
   };
 
-  my.wezterm.enable = true;
-  my.codeDir.enable = true;
-  my.zed.enable = true;
+  wezterm.enable = true;
+  code-dir.enable = true;
+  zed.enable = true;
 
-  my.zsh.enable = true;
+  zsh.enable = true;
   home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
 }

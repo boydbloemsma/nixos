@@ -92,11 +92,13 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  # Allows zed to use LSP's
   programs.nix-ld.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Install docker and docker compose
   virtualisation.docker.enable = true;
 
   # List packages installed in system profile. To search, run:
