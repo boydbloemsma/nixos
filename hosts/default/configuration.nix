@@ -89,41 +89,6 @@
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allows zed to use LSP's
-  programs.nix-ld.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Install docker and docker compose
-  virtualisation.docker.enable = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    lf
-    wget
-    git
-    neovim
-    btop
-    httpie
-    httpie-desktop
-    jetbrains.phpstorm
-    zed-editor
-    lazygit
-    lazydocker
-    sqlite
-    php84
-    php84Packages.composer
-    nodejs_22
-    claude-code
-    kamal
-  ];
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -153,4 +118,23 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
+  # Install firefox.
+  programs.firefox.enable = true;
+
+  # Allows zed to use LSP's
+  programs.nix-ld.enable = true;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Install docker and docker compose
+  virtualisation.docker.enable = true;
+
+  httpie.enable = false;
+  lazy.enable = true;
+  php.enable = true;
+  sqlite.enable = true;
+  node.enable = true;
+  ai.enable = true;
+  kamal.enable = true;
 }
