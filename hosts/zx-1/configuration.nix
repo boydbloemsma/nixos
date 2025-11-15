@@ -119,14 +119,22 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
   # Nvidia drivers
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    }
+
+    nvidia = {
+      open = true;
+
+      modesetting = {
+        enable = true;
+      }
+    }
+  }
 
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.modesetting.enable = true;
 
   # Install Steam
   programs.steam.enable = true;

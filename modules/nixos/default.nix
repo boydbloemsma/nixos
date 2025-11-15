@@ -10,7 +10,7 @@
     ./ai.nix
     ./kamal.nix
     ./media.nix
-    ./discord
+    ./discord.nix
   ];
 
   foundation.enable = lib.mkDefault true;
