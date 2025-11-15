@@ -4,6 +4,7 @@
   config = lib.mkIf config.node.enable {
     environment.systemPackages = with pkgs; [
       nodejs_22
+      pnpm
     ];
   };
 }
