@@ -1,6 +1,12 @@
 # Installing
 
+When adding a new host you will need to generate a new host.nix file.
+The following command copies it to `/etc/nixos/` change this to the new host location
 
+```sh
+nix run home-manager/master -- init && \
+sudo cp ~/.config/home-manager/home.nix /etc/nixos/
+```
 
 # Updating
 

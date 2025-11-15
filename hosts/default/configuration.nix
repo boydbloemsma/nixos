@@ -16,7 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "T480"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -116,7 +116,6 @@
     git
     neovim
     btop
-    wezterm
     httpie
     httpie-desktop
     jetbrains.phpstorm
@@ -127,8 +126,6 @@
     php84
     php84Packages.composer
     nodejs_22
-    ruby_3_4
-    love
     claude-code
     kamal
   ];
