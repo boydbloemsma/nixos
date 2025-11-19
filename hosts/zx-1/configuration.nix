@@ -128,6 +128,10 @@
     nvidia = {
       open = true;
 
+      powerManagement = {
+        enable = true;
+      };
+
       modesetting = {
         enable = true;
       };
