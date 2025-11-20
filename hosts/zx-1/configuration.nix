@@ -130,6 +130,7 @@
 
       powerManagement = {
         enable = true;
+        finegrained = false;
       };
 
       modesetting = {
