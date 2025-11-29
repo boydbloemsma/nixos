@@ -86,6 +86,7 @@
   wezterm.enable = true;
   code-dir.enable = true;
   zed.enable = true;
+  keybindings.enable = true;
 
   zsh.enable = true;
   home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
