@@ -1,8 +1,12 @@
 { config, lib, ... }: {
-  options.keybindings.enable = lib.mkEnableOption "Add Gnome keybindings";
+  options.keybindings.enable = lib.mkEnableOption "Enable Gnome settings";
 
   config = lib.mkIf config.keybindings.enable {
     dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        enable-hot-corners = false;
+      };
+
       "org/gnome/desktop/wm/keybindings" = {
         switch-windows = ["<Alt>Tab"];
         switch-windows-backwards = ["<Shift><Alt>Tab"];

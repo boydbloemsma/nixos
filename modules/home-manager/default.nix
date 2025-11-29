@@ -4,6 +4,6 @@
     ./wezterm.nix
     ./zed.nix
     ./zsh.nix
-    ./keybindings.nix
+    ./gnome-settings.nix
   ];
 }
