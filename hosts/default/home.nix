@@ -87,6 +87,7 @@
   code-dir.enable = true;
   zed.enable = true;
   keybindings.enable = true;
+  touchpad.enable = true;
 
   zsh.enable = true;
   home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
