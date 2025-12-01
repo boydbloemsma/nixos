@@ -4,9 +4,15 @@
   config = lib.mkIf config.media.enable {
     environment.systemPackages = with pkgs; [
       vlc
-      plex
       qbittorrent
       protonvpn-gui
     ];
+
+    services.plex = {
+      enable = true;
+      openFirewall = true;
+      user = "boyd";
+      group = "users";
+    };
   };
 }
