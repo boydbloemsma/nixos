@@ -6,6 +6,7 @@
       php84
       php84Packages.composer
       jetbrains.phpstorm
+      laravel
     ];
   };
 }

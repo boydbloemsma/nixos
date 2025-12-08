@@ -8,11 +8,11 @@
       protonvpn-gui
     ];
 
-    services.plex = {
-      enable = true;
-      openFirewall = true;
-      user = "boyd";
-      group = "users";
-    };
+        # services.plex = {
+        # enable = true;
+        # openFirewall = true;
+        # user = "boyd";
+        # group = "users";
+        # };
   };
 }
