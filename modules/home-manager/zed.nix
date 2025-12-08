@@ -1,11 +1,27 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options.zed.enable = lib.mkEnableOption "Enable Zed with custom config";
 
   config = lib.mkIf config.zed.enable {
+    home.packages = with pkgs; [
+      nil
+      nixd
+    ];
+
     programs.zed-editor = {
       enable = true;
 
-      extensions = [ "nix" "toml" "yaml" "php" ];
+      extensions = [
+        "nix"
+        "toml"
+        "yaml"
+        "php"
+      ];
 
       userSettings = {
         theme = {
@@ -20,7 +36,11 @@
 
         languages = {
           "PHP" = {
-            language_servers = [ "intelephense" "!phpactor" "..." ];
+            language_servers = [
+              "intelephense"
+              "!phpactor"
+              "..."
+            ];
           };
         };
 
@@ -46,6 +66,14 @@
         git = {
           inline_blame = {
             enabled = false;
+          };
+        };
+
+        lsp = {
+          nix = {
+            binary = {
+              path_lookup = true;
+            };
           };
         };
       };
