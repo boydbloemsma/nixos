@@ -6,6 +6,7 @@
       vlc
       qbittorrent
       protonvpn-gui
+      rawtherapee
     ];
 
         # services.plex = {
