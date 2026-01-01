@@ -21,6 +21,12 @@
         "toml"
         "yaml"
         "php"
+        "html"
+        "dockerfile"
+        "git_firefly"
+        "svelte"
+        "astro"
+        "zed-just"
       ];
 
       userSettings = {
@@ -50,7 +56,7 @@
           };
         };
 
-        relative_line_numbers = true;
+        relative_line_numbers = "enabled";
         vertical_scroll_margin = 5;
 
         command_aliases = {
@@ -62,6 +68,8 @@
         buffer_font_features = {
           calt = false;
         };
+
+        format_on_save = "on";
 
         git = {
           inline_blame = {

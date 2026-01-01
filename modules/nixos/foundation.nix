@@ -9,6 +9,7 @@
       lf
       wget
       btop
+      just
     ];
   };
 }
