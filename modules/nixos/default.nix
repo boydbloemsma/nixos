@@ -2,7 +2,7 @@
   imports = [
     ./shell.nix
     ./foundation.nix
-    ./httpie.nix
+    ./bruno.nix
     ./lazy.nix
     ./php.nix
     ./sqlite.nix

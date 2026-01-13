@@ -160,7 +160,7 @@
   # Install docker and docker compose
   virtualisation.docker.enable = true;
 
-  httpie.enable = true;
+  bruno.enable = true;
   lazy.enable = true;
   php.enable = true;
   sqlite.enable = true;
