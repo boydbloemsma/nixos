@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ lib, ... }:
+{
   imports = [
     ./shell.nix
     ./foundation.nix
@@ -10,7 +11,7 @@
     ./ai.nix
     ./kamal.nix
     ./media.nix
-    ./discord.nix
+    ./gaming.nix
   ];
 
   foundation.enable = lib.mkDefault true;

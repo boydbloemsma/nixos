@@ -2,15 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-      ./home-manager.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+    ./home-manager.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -83,13 +88,20 @@
   users.users.boyd = {
     isNormalUser = true;
     description = "Boyd Bloemsma";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -141,13 +153,6 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Install Steam
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-
-  # Improves gaming capabilities
-  programs.gamemode.enable = true;
-
   # Install firefox
   programs.firefox.enable = true;
 
@@ -168,6 +173,6 @@
   ai.enable = true;
   kamal.enable = true;
 
-  discord.enable = true;
+  gaming.enable = true;
   media.enable = true;
 }
