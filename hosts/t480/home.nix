@@ -86,7 +86,7 @@
   wezterm.enable = true;
   code-dir.enable = true;
   zed.enable = true;
-  keybindings.enable = true;
+  gnome-settings.enable = true;
   touchpad.enable = true;
 
   zsh.enable = true;

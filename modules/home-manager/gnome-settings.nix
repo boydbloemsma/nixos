@@ -1,7 +1,12 @@
-{ config, lib, ... }: {
-  options.keybindings.enable = lib.mkEnableOption "Enable Gnome settings";
+{
+  config,
+  lib,
+  ...
+}:
+{
+  options.gnome-settings.enable = lib.mkEnableOption "Enable Gnome settings";
 
-  config = lib.mkIf config.keybindings.enable {
+  config = lib.mkIf config.gnome-settings.enable {
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         enable-hot-corners = false;
@@ -15,10 +20,10 @@
       };
 
       "org/gnome/desktop/wm/keybindings" = {
-        switch-windows = ["<Alt>Tab"];
-        switch-windows-backwards = ["<Shift><Alt>Tab"];
-        switch-applications = [];
-        switch-applications-backwards = [];
+        switch-windows = [ "<Alt>Tab" ];
+        switch-windows-backwards = [ "<Shift><Alt>Tab" ];
+        switch-applications = [ ];
+        switch-applications-backwards = [ ];
       };
     };
   };

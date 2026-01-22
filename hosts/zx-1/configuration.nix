@@ -148,7 +148,7 @@
   # Improves gaming capabilities
   programs.gamemode.enable = true;
 
-  # Install firefox.
+  # Install firefox
   programs.firefox.enable = true;
 
   # Allows zed to use LSP's
