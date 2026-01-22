@@ -1,13 +1,25 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
   options.gnome-settings.enable = lib.mkEnableOption "Enable Gnome settings";
 
   config = lib.mkIf config.gnome-settings.enable {
+    home.packages = with pkgs; [
+      gnomeExtensions.appindicator
+    ];
+
     dconf.settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = [
+          "appindicatorsupport@rgcjonas.gmail.com"
+        ];
+      };
+
       "org/gnome/desktop/interface" = {
         enable-hot-corners = false;
         accent-color = "blue";
