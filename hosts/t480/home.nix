@@ -83,7 +83,7 @@
     };
   };
 
-  wezterm.enable = true;
+  ghostty.enable = true;
   code-dir.enable = true;
   zed.enable = true;
   gnome-settings.enable = true;

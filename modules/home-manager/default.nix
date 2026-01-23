@@ -1,7 +1,8 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   imports = [
     ./structure.nix
-    ./wezterm.nix
+    ./ghostty.nix
     ./zed.nix
     ./zsh.nix
     ./gnome-settings.nix
