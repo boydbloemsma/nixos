@@ -154,6 +154,9 @@
   # Install docker and docker compose
   virtualisation.docker.enable = true;
 
+  # Install Tailscale
+  services.tailscale.enable = true;
+
   bruno.enable = true;
   lazy.enable = true;
   php.enable = true;
