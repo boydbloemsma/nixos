@@ -12,6 +12,7 @@
     ./kamal.nix
     ./media.nix
     ./gaming.nix
+    ./once.nix
   ];
 
   foundation.enable = lib.mkDefault true;

@@ -11,8 +11,28 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
     {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      devShells.${system}.shopify = pkgs.mkShell {
+        packages = [ pkgs.nodejs_22 ];
+        shellHook = ''
+          export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+          export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
+          if ! command -v shopify &> /dev/null; then
+            echo "Installing Shopify CLI..."
+            npm install -g @shopify/cli@latest
+          fi
+        '';
+      };
+
       nixosConfigurations = {
         t480 = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };

@@ -173,6 +173,8 @@
   ai.enable = true;
   kamal.enable = true;
 
+  once.enable = true;
+
   gaming.enable = true;
   media.enable = true;
 }
