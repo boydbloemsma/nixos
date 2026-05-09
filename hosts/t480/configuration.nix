@@ -154,6 +154,8 @@
   # Install docker and docker compose
   virtualisation.docker.enable = true;
 
+  onepassword.enable = true;
+
   bruno.enable = true;
   lazy.enable = true;
   php.enable = true;

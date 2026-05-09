@@ -13,6 +13,7 @@
     ./media.nix
     ./gaming.nix
     ./once.nix
+    ./onepassword.nix
   ];
 
   foundation.enable = lib.mkDefault true;

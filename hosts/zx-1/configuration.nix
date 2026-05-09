@@ -174,6 +174,7 @@
   kamal.enable = true;
 
   once.enable = true;
+  onepassword.enable = true;
 
   gaming.enable = true;
   media.enable = true;

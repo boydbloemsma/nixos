@@ -11,7 +11,7 @@
     environment.systemPackages = with pkgs; [
       vlc
       qbittorrent
-      protonvpn-gui
+      proton-vpn
       rawtherapee
       jellyfin
       jellyfin-web
