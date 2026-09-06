@@ -175,6 +175,7 @@
 
   once.enable = true;
   onepassword.enable = true;
+  tailscale.enable = true;
 
   gaming.enable = true;
   media.enable = true;

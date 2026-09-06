@@ -22,9 +22,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "T480"; # Define your hostname.
-  networking.hosts = {
-    "192.168.1.144" = [ "prodesk" ];
-  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -158,6 +155,7 @@
   virtualisation.docker.enable = true;
 
   onepassword.enable = true;
+  tailscale.enable = true;
 
   bruno.enable = true;
   lazy.enable = true;

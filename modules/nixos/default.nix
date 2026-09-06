@@ -14,6 +14,7 @@
     ./gaming.nix
     ./once.nix
     ./onepassword.nix
+    ./tailscale.nix
   ];
 
   foundation.enable = lib.mkDefault true;
