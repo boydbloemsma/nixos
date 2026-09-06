@@ -83,6 +83,30 @@
     };
   };
 
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    settings = {
+      "*" = {
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+      };
+      prodesk = {
+        hostname = "prodesk";
+        user = "boydbloemsma";
+        forwardAgent = true;
+      };
+    };
+  };
+
   ghostty.enable = true;
   code-dir.enable = true;
   zed.enable = true;
