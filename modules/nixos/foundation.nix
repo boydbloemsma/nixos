@@ -5,6 +5,7 @@
     environment.systemPackages = with pkgs; [
       vim
       git
+      jujutsu
       neovim
       lf
       wget
