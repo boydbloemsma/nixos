@@ -48,6 +48,13 @@
             ./modules/nixos
           ];
         };
+        t14 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/t14/configuration.nix
+            ./modules/nixos
+          ];
+        };
       };
 
       homeManagerModules.default = ./modules/home-manager;
