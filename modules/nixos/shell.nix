@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
-  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.fish;
+  environment.shells = with pkgs; [ fish ];
+  programs.fish.enable = true;
 }

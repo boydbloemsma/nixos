@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    theme-bobthefish = {
+      url = "github:oh-my-fish/theme-bobthefish";
+      flake = false;
+    };
   };
 
   outputs =

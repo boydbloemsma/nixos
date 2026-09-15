@@ -104,9 +104,10 @@
 
   ghostty.enable = true;
   code-dir.enable = true;
+  zed.enable = true;
   gnome-settings.enable = true;
   touchpad.enable = true;
 
-  zsh.enable = true;
-  home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
+  fish.enable = true;
+  home.sessionVariables.SHELL = "${pkgs.fish}/bin/fish";
 }

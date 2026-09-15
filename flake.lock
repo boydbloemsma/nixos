@@ -39,7 +39,24 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "theme-bobthefish": "theme-bobthefish"
+      }
+    },
+    "theme-bobthefish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779240679,
+        "narHash": "sha256-wzC+PNpKCJy4zRAdY9wagrgUulAMb8B6lrwc106P7Zc=",
+        "owner": "oh-my-fish",
+        "repo": "theme-bobthefish",
+        "rev": "72a89d424644d087c182843a48fbf0a43c796f31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oh-my-fish",
+        "repo": "theme-bobthefish",
+        "type": "github"
       }
     }
   },

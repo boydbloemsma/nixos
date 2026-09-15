@@ -112,6 +112,7 @@
   
   onepassword.enable = true;
   tailscale.enable = true;
+  ai.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
