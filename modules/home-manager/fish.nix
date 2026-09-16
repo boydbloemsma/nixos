@@ -14,9 +14,7 @@
     programs.fish = {
       enable = true;
 
-      shellAliases = {
-        fnix = "nix-shell --run fish";
-      };
+      shellAliases = import ./shell-aliases.nix;
 
       functions = {
         fish_greeting = "";
