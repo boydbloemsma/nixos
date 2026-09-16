@@ -99,11 +99,6 @@
         controlPath = "~/.ssh/master-%r@%n:%p";
         controlPersist = "no";
       };
-      prodesk = {
-        hostname = "prodesk";
-        user = "boydbloemsma";
-        forwardAgent = true;
-      };
     };
   };
 
