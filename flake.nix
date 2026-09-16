@@ -69,7 +69,7 @@
         vm-dev = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            disko.nixModules.disko
+            disko.nixosModules.disko
             ./hosts/vm-dev/configuration.nix
             ./modules/nixos
           ];
