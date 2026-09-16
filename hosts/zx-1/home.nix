@@ -85,6 +85,7 @@
 
   ghostty.enable = true;
   code-dir.enable = true;
+  neovim.enable = true;
   zed.enable = true;
   gnome-settings.enable = true;
 
