@@ -2,10 +2,14 @@
     vim.statusline = {
         lualine = {
             enable = true;
-            icons.enable = false;
-            componentSeparator = {
-                left = "|";
-                right = "|";
+            setupOpts = {
+                options = {
+                    icons_enabled = true;
+                    components_separators = {
+                        left = "|";
+                        right = "|";
+                    };
+                };
             };
         };
     };
