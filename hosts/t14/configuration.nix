@@ -2,15 +2,20 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-      ./home-manager.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+    ./home-manager.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -43,7 +48,7 @@
     LC_TELEPHONE = "nl_NL.UTF-8";
     LC_TIME = "nl_NL.UTF-8";
   };
-  
+
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
@@ -78,41 +83,47 @@
   users.users."boyd" = {
     isNormalUser = true;
     description = "Boyd Bloemsma";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
-  
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-  
+
   zramSwap = {
     enable = true;
     algorithm = "zstd";
     memoryPercent = 50;
   };
-  
+
   services.thermald.enable = true;
-  
+
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "50%";
 
   # Install firefox.
   programs.firefox.enable = true;
-  
+
   programs.nix-ld.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   virtualisation.docker.enable = true;
-  
+
   onepassword.enable = true;
   tailscale.enable = true;
   ai.enable = true;
+  lazy.enable = true;
+  kamal.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

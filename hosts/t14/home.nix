@@ -109,5 +109,8 @@
   touchpad.enable = true;
 
   fish.enable = true;
+  bash.enable = true;
+  atuin.enable = true;
+
   home.sessionVariables.SHELL = "${pkgs.fish}/bin/fish";
 }

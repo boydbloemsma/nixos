@@ -6,6 +6,7 @@
     ./zed.nix
     ./fish.nix
     ./bash.nix
+    ./atuin.nix
     ./gnome-settings.nix
     ./touchpad.nix
   ];
