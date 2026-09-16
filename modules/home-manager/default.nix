@@ -1,9 +1,16 @@
-{ pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
+    inputs.nvf.homeManagerModules.default
     ./structure.nix
     ./ghostty.nix
     ./zed.nix
+    ./neovim.nix
     ./fish.nix
     ./bash.nix
     ./atuin.nix
