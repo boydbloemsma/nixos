@@ -5,6 +5,7 @@
     ./ghostty.nix
     ./zed.nix
     ./fish.nix
+    ./bash.nix
     ./gnome-settings.nix
     ./touchpad.nix
   ];

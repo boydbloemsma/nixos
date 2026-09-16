@@ -8,6 +8,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     theme-bobthefish = {
       url = "github:oh-my-fish/theme-bobthefish";
       flake = false;
@@ -18,6 +24,7 @@
     {
       self,
       nixpkgs,
+      disko,
       ...
     }@inputs:
     let
@@ -56,6 +63,14 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/t14/configuration.nix
+            ./modules/nixos
+          ];
+        };
+        vm-dev = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            disko.nixModules.disko
+            ./hosts/vm-dev/configuration.nix
             ./modules/nixos
           ];
         };
