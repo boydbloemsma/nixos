@@ -20,10 +20,11 @@
       options = [
         "umask=22"
         "uid=1000"
-        "gid=1000"
+        "gid=100"
         "allow_other"
         "auto_unmount"
         "defaults"
+        "nofail"
       ];
     };
 
