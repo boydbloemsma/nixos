@@ -66,5 +66,15 @@
       };
 
       homeManagerModules.default = ./modules/home-manager;
+
+      devShells."x86_64-linux" = {
+        php85 = nixpkgs.legacyPackages."x86_64-linux".mkShell {
+            packages = with nixpkgs.legacyPackages."x86_64-linux"; [
+                php85
+                php85Packages.composer
+                laravel
+            ];
+        };
+      };
     };
 }

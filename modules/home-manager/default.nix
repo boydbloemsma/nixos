@@ -16,5 +16,6 @@
     ./atuin.nix
     ./gnome-settings.nix
     ./touchpad.nix
+    ./direnv.nix
   ];
 }

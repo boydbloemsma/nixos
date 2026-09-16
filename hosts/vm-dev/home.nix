@@ -48,6 +48,7 @@
   fish.enable = true;
   bash.enable = true;
   atuin.enable = true;
+  direnv.enable = true;
 
   home.sessionVariables.SHELL = "${pkgs.fish}/bin/fish";
 }
