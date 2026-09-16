@@ -63,4 +63,5 @@
   vm-guest.enable = true;
   tailscale.enable = true;
   onepassword.enable = true;
+  lazy.enable = true;
 }
