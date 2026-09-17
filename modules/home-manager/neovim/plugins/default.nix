@@ -6,5 +6,8 @@
         ./lsp.nix
         ./coding.nix
         ./lazygit.nix
+        ./mini.nix
+        ./conform.nix
+        ./undotree.nix
     ];
 }

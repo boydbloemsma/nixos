@@ -8,6 +8,18 @@
             lua = true;
         }
 
+        {
+            mode = "n";
+            key = "<leader>u";
+            action = "<Cmd>UndotreeToggle<CR>";
+        }
+        {
+            mode = "n";
+            key = "<leader>lf";
+            action = "function() vim.lsp.buf.format() end";
+            lua = true;
+        }
+
         # window navigation
         {
             mode = "n";
