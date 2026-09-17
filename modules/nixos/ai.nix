@@ -1,10 +1,11 @@
-{ config, lib, pkgs, ... }: {
-  options.ai.enable = lib.mkEnableOption "Install Claude Code and herdr";
+{ config, lib, pkgs, inputs, ... }: {
+  options.ai.enable = lib.mkEnableOption "Install AI tools";
 
   config = lib.mkIf config.ai.enable {
     environment.systemPackages = with pkgs; [
-      claude-code
-      herdr
+      inputs.llm-agents-nix.packages.${pkgs.system}.herdr
+      inputs.llm-agents-nix.packages.${pkgs.system}.pi
+      inputs.llm-agents-nix.packages.${pkgs.system}.claude-code
     ];
   };
 }
