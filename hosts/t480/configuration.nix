@@ -157,11 +157,7 @@
   onepassword.enable = true;
   tailscale.enable = true;
 
-  bruno.enable = true;
   lazy.enable = true;
-  php.enable = true;
-  sqlite.enable = true;
-  node.enable = true;
   ai.enable = true;
   kamal.enable = true;
 }

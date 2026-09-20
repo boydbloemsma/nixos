@@ -13,27 +13,7 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
   programs.home-manager.enable = true;
 
-  programs.git = {
-    enable = true;
-
-    settings.user = {
-      name = "Boyd Bloemsma";
-      email = "boydbloemsma@gmail.com";
-    };
-  };
-
-  ghostty.enable = true;
-  code-dir.enable = true;
-  neovim.enable = true;
-  zed.enable = true;
   gnome-settings.enable = true;
-
-  fish.enable = true;
-  home.sessionVariables.SHELL = "${pkgs.fish}/bin/fish";
 }

@@ -156,22 +156,8 @@
   # Install firefox
   programs.firefox.enable = true;
 
-  # Allows zed to use LSP's
-  programs.nix-ld.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Install docker and docker compose
-  virtualisation.docker.enable = true;
-
-  bruno.enable = true;
-  lazy.enable = true;
-  php.enable = true;
-  sqlite.enable = true;
-  node.enable = true;
-  ai.enable = true;
-  kamal.enable = true;
 
   onepassword.enable = true;
   tailscale.enable = true;
