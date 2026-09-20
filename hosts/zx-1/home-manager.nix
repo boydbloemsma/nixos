@@ -1,6 +1,8 @@
 { inputs, ... }: {
   home-manager = {
-    extraSpecialArgs = { inherit  inputs; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
 
     users = {
       "boyd" = {

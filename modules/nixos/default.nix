@@ -3,6 +3,7 @@
   imports = [
     ./shell.nix
     ./foundation.nix
+    ./desktop-base.nix
     ./lazy.nix
     ./ai.nix
     ./kamal.nix
@@ -14,4 +15,6 @@
   ];
 
   foundation.enable = lib.mkDefault true;
+  desktop-base.enable = lib.mkDefault true;
+  shell.enable = lib.mkDefault true;
 }
