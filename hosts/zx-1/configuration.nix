@@ -173,7 +173,6 @@
   ai.enable = true;
   kamal.enable = true;
 
-  once.enable = true;
   onepassword.enable = true;
   tailscale.enable = true;
 

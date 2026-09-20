@@ -12,7 +12,6 @@
     ./kamal.nix
     ./media.nix
     ./gaming.nix
-    ./once.nix
     ./onepassword.nix
     ./tailscale.nix
     ./vm-guest.nix
