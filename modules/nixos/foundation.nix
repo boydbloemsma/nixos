@@ -25,6 +25,7 @@
       eza
       htop
       tree
+      devenv
     ];
   };
 }
