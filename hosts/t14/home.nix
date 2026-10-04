@@ -17,6 +17,10 @@
     EDITOR = "nvim";
   };
 
+  home.packages = with pkgs; [
+    github-desktop
+  ];
+
   programs.home-manager.enable = true;
 
   programs.git = {

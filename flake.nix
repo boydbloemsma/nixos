@@ -19,10 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    llm-agents-nix = {
-      url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
     theme-bobthefish = {
       url = "github:oh-my-fish/theme-bobthefish";
