@@ -1,6 +1,9 @@
 { lib, ... }: {
   vim = {
-    treesitter.enable = true;
+    treesitter = {
+        enable = true;
+        indent.excludes = [ "php" ];
+    };
 
     languages = {
       nix.enable = true;
