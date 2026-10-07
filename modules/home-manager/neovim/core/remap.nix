@@ -8,11 +8,7 @@
             lua = true;
         }
 
-        {
-            mode = "n";
-            key = "<leader>u";
-            action = "<Cmd>UndotreeToggle<CR>";
-        }
+        # format
         {
             mode = "n";
             key = "<leader>lf";
