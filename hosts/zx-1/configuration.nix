@@ -45,9 +45,12 @@
   desktop-base.nix-ld = false;
   lazy.enable = true;
   ai.enable = true;
+  ai.ollama.enable = true;
   kamal.enable = true;
   onepassword.enable = true;
   tailscale.enable = true;
   gaming.enable = true;
   media.enable = true;
+  media.jellyfin.enable = true;
+  media.jellyfin.user = "boyd";
 }

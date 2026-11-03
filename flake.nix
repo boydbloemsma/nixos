@@ -50,6 +50,14 @@
             ./modules/nixos
           ];
         };
+        prodesk = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/prodesk/configuration.nix
+            ./modules/nixos
+          ];
+        };
         t14 = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
@@ -69,14 +77,27 @@
 
       homeManagerModules.default = ./modules/home-manager;
 
-      devShells."x86_64-linux" = {
-        php85 = nixpkgs.legacyPackages."x86_64-linux".mkShell {
-          packages = with nixpkgs.legacyPackages."x86_64-linux"; [
-            php85
-            php85Packages.composer
-            laravel
-          ];
+      devShells."x86_64-linux" =
+        let
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          php85Shell = pkgs.mkShell {
+            packages = with pkgs; [
+              php85
+              php85Packages.composer
+              laravel
+            ];
+          };
+        in
+        {
+          php85 = php85Shell;
+
+          tempest = pkgs.mkShell {
+            inputsFrom = [ php85Shell ];
+            packages = with pkgs; [
+              nodejs
+              pnpm
+            ];
+          };
         };
-      };
     };
 }

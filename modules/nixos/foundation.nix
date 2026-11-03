@@ -12,6 +12,7 @@
       vim
       git
       jujutsu
+      hunk
       neovim
       lf
       wget
