@@ -49,31 +49,35 @@ sudo nixos-rebuild switch --flake /etc/nixos/#zx-1
 When this is done you can move it anywhere since we use home manager.
 Like the user directory: `~/nixos`
 
-## Installing on a VM using nixos-anywhere
+## Installing on a MacBook with OrbStack
 
-Unlike physical hosts, `vm-dev` is installed with `nixos-anywhere` instead
-of a manual `nixos-install`. It partitions the disks declaratively via
-`hosts/vm-dev/disko.nix`, so there's no `parted` / `mkfs` step.
-Mitchell Hashimoto has a good walkthrough of creating a VMware Fusion VM:
-[VMware Fusion VM](https://www.youtube.com/watch?v=ubDMLoWz76U).
+`vm-dev` runs as an OrbStack NixOS machine (an LXC container), so there's no
+bootloader, disk partitioning or hardware config. OrbStack handles networking,
+SSH (`ssh vm-dev@orb`) and mounts your Mac home at `/Users/<you>`.
 
-1. Create a VMware Fusion VM (aarch64 NixOS ISO, SATA/SCSI disk so it shows
-   up as `/dev/sda`), boot it, and set a root password with `passwd` so `nixos-anywhere` can log in once over SSH.
-2. From this repo on your Mac (or another Linux box), run:
+1. On the Mac, create the machine and open a shell in it:
 
    ```sh
-   nix run github:nix-community/nixos-anywhere -- \
-     --flake .#vm-dev \
-     --generate-hardware-config nixos-generate-config ./hosts/vm-dev/hardware-configuration.nix \
-     root@<vm-ip>
+   orb create nixos vm-dev
+   orb -m vm-dev
    ```
 
-3. It partitions/formats via disko, installs NixOS, copies your flake config
-   in, and reboots. Log back in as boyd over SSH afterwards.
+2. Clone this repo inside the machine, then copy OrbStack's generated modules in:
 
-To apply changes after the initial install, from inside the VM:
+   ```sh
+   cp /etc/nixos/orbstack.nix /etc/nixos/incus.nix ~/nixos/hosts/vm-dev/
+   git -C ~/nixos add hosts/vm-dev
+   ```
 
-sudo nixos-rebuild switch --flake .#vm-dev
+   (Older images generate `lxd.nix` instead of `incus.nix`; update the import
+   in `hosts/vm-dev/configuration.nix` if so.) Match `system.stateVersion` and
+   the user's `uid` to OrbStack's generated `/etc/nixos/configuration.nix`.
+
+3. Apply the config:
+
+   ```sh
+   sudo nixos-rebuild switch --flake ~/nixos#vm-dev
+   ```
 
 # Updating
 
