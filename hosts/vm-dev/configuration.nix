@@ -28,8 +28,13 @@
   # Copy uid/groups from OrbStack's generated configuration.nix.
   users.users.boyd = {
     uid = 501;
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    isSystemUser = true;
+    group = "users";
+    createHome = true;
+    home = "/home/boyd";
+    homeMode = "700";
+    useDefaultShell = true;
+    extraGroups = [ "wheel" "orbstack" "docker" ];
   };
   security.sudo.wheelNeedsPassword = false;
 
@@ -53,10 +58,17 @@
     options = "--delete-older-than 15d";
   };
 
+  environment.systemPackages = [
+    pkgs.git
+    pkgs.ghostty.terminfo
+  ];
+
   programs.nix-ld.enable = true;
 
   # 1Password CLI only; the Mac's SSH agent is forwarded by OrbStack.
   programs._1password.enable = true;
 
   lazy.enable = true;
+  virtualisation.docker.enable = true;
+  ai.enable = true;
 }

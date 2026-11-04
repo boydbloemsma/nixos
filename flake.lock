@@ -148,6 +148,27 @@
         "type": "github"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793418699,
+        "narHash": "sha256-+RpTlcdh9KqZ+ZiLkNSTvibQWm935EcIdBzRPCTFsrQ=",
+        "owner": "nix-darwin",
+        "repo": "nix-darwin",
+        "rev": "ff0e21a414d4547183396da1b44a66f2577b65e9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-darwin",
+        "ref": "master",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1790600678,
@@ -207,6 +228,7 @@
         "disko": "disko",
         "home-manager": "home-manager",
         "llm-agents-nix": "llm-agents-nix",
+        "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf",
         "theme-bobthefish": "theme-bobthefish"

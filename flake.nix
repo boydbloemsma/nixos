@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +36,7 @@
     {
       self,
       nixpkgs,
+      nix-darwin,
       disko,
       ...
     }@inputs:
@@ -72,6 +78,15 @@
             ./modules/nixos
           ];
         };
+      };
+      
+      darwinConfigurations."boyd" = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/mac/configuration.nix
+          inputs.home-manager.darwinModules.home-manager
+          ./hosts/mac/home-manager.nix
+        ];
       };
 
       homeManagerModules.default = ./modules/home-manager;
