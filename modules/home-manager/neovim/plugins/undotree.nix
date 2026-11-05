@@ -1,6 +1,7 @@
 { lib, ... }: {
     vim = {
         utility.undotree.enable = true;
+        undoFile.enable = true;
 
         keymaps = [
             {

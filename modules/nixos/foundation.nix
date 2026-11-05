@@ -27,6 +27,7 @@
       htop
       tree
       devenv
+      hunk
     ];
   };
 }

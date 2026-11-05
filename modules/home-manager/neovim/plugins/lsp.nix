@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   vim = {
     treesitter = {
         enable = true;
@@ -13,7 +13,9 @@
       typescript.enable = true;
       tsx.enable = true;
       css.enable = true;
-      scss.enable = true;
+      scss = {
+        lsp.enable = !pkgs.stdenv.isDarwin;
+      };
 
       php = {
         enable = true;

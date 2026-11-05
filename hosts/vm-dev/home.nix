@@ -7,6 +7,13 @@
     EDITOR = "nvim";
   };
 
+  xdg.configFile."hunk/config.toml".text = ''
+    mode = "split"
+    theme = "gruvbox-dark"
+    line_numbers = true
+    wrap_lines = true
+  '';
+
   programs.home-manager.enable = true;
 
   programs.git = {
