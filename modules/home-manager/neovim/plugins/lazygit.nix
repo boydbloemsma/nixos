@@ -1,17 +1,17 @@
-{ lib, ... }: {
-    vim = {
-        terminal = {
-            toggleterm = {
-                enable = true;
+{ ... }: {
+  vim = {
+    terminal = {
+      toggleterm = {
+        enable = true;
 
-                mappings.open = "<C-t>";
+        mappings.open = "<C-t>";
 
-                lazygit = {
-                    enable = true;
+        lazygit = {
+          enable = true;
 
-                    mappings.open = "<leader>lg";
-                };
-            };
+          mappings.open = "<leader>lg";
         };
+      };
     };
+  };
 }

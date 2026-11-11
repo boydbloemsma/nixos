@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ ... }: {
   vim.formatter = {
     conform-nvim = {
       enable = true;

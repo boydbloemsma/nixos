@@ -1,7 +1,7 @@
-{ lib, ... }: {
-    vim.mini = {
-        pairs = {
-            enable = true;
-        };
+{ ... }: {
+  vim.mini = {
+    pairs = {
+      enable = true;
     };
+  };
 }

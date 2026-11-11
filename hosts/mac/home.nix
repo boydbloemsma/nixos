@@ -24,6 +24,7 @@
   bash.enable = true;
   atuin.enable = true;
   direnv.enable = true;
+  hunk.enable = true;
 
   ghostty.enable = true;
   programs.ghostty.package = null;

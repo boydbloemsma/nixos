@@ -1,14 +1,14 @@
-{ lib, ... }: {
-    vim = {
-        utility.undotree.enable = true;
-        undoFile.enable = true;
+{ ... }: {
+  vim = {
+    utility.undotree.enable = true;
+    undoFile.enable = true;
 
-        keymaps = [
-            {
-                mode = "n";
-                key = "<leader>u";
-                action = "<Cmd>UndotreeToggle<CR>";
-            }
-        ];
-    };
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>u";
+        action = "<Cmd>UndotreeToggle<CR>";
+      }
+    ];
+  };
 }

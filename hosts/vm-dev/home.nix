@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.username = "boyd";
   home.homeDirectory = "/home/boyd";
   home.stateVersion = "24.05";
@@ -6,13 +6,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-
-  xdg.configFile."hunk/config.toml".text = ''
-    mode = "split"
-    theme = "gruvbox-dark"
-    line_numbers = true
-    wrap_lines = true
-  '';
 
   programs.home-manager.enable = true;
 
@@ -53,6 +46,7 @@
   bash.enable = true;
   atuin.enable = true;
   direnv.enable = true;
+  hunk.enable = true;
 
   home.sessionVariables.SHELL = "${pkgs.fish}/bin/fish";
 }

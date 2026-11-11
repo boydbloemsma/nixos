@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }: {
-    imports = [
-        ./options.nix
-        ./theme.nix
-        ./remap.nix
-    ];
+{ ... }: {
+  imports = [
+    ./options.nix
+    ./theme.nix
+    ./remap.nix
+  ];
 }

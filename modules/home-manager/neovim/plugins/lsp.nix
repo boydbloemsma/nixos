@@ -1,8 +1,8 @@
-{ lib, pkgs, ... }: {
+{ pkgs, ... }: {
   vim = {
     treesitter = {
-        enable = true;
-        indent.excludes = [ "php" ];
+      enable = true;
+      indent.excludes = [ "php" ];
     };
 
     languages = {

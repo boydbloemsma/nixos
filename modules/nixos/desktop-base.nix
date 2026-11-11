@@ -1,9 +1,13 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, ... }:
 {
   options.desktop-base = {
     enable = lib.mkEnableOption "Common desktop configuration (GNOME, pipewire, networking, etc.)";
-    docker = lib.mkEnableOption "Docker" // { default = true; };
-    nix-ld = lib.mkEnableOption "nix-ld" // { default = true; };
+    docker = lib.mkEnableOption "Docker" // {
+      default = true;
+    };
+    nix-ld = lib.mkEnableOption "nix-ld" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.desktop-base.enable {
@@ -61,7 +65,7 @@
         "flakes"
       ];
       extra-substituters = [ "https://cache.numtide.com" ];
-      extra-trusted-public-keys = [ 
+      extra-trusted-public-keys = [
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       ];
     };

@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options.lazy.enable = lib.mkEnableOption "Install lazygit and lazydocker";
 
   config = lib.mkIf config.lazy.enable {

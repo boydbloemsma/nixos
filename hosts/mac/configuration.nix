@@ -1,20 +1,23 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   nixpkgs.hostPlatform = "aarch64-darwin";
   system.stateVersion = 6;
   system.primaryUser = "ede-mac048";
   users.users.ede-mac048.home = "/Users/ede-mac048";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs.config.allowUnfree = true;
-  
+
   environment.systemPackages = with pkgs; [ git ];
   environment.shells = [ pkgs.fish ];
   environment.systemPath = [
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
   ];
-  
+
   homebrew = {
     enable = true;
     onActivation = {
@@ -28,12 +31,13 @@
       "nss"
       "herdr"
       "pi-coding-agent"
+      "hunk"
     ];
     casks = [
-      "ghostty" 
-      "orbstack" 
-      "1password" 
-      "firefox" 
+      "ghostty"
+      "orbstack"
+      "1password"
+      "firefox"
       "slack"
       "microsoft-teams"
       "openvpn-connect"
@@ -85,7 +89,7 @@
       NSAutomaticDashSubstitutionEnabled = false;
       NSAutomaticCapitalizationEnabled = false;
     };
-    
+
     trackpad.Clicking = true;
     screencapture.location = "~/Pictures/Screenshots";
   };

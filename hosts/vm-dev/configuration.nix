@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   inputs,
   modulesPath,
   ...
@@ -34,7 +33,11 @@
     home = "/home/boyd";
     homeMode = "700";
     useDefaultShell = true;
-    extraGroups = [ "wheel" "orbstack" "docker" ];
+    extraGroups = [
+      "wheel"
+      "orbstack"
+      "docker"
+    ];
   };
   security.sudo.wheelNeedsPassword = false;
 

@@ -34,7 +34,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       nix-darwin,
       disko,
@@ -42,13 +41,6 @@
     }@inputs:
     {
       nixosConfigurations = {
-        t480 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/t480/configuration.nix
-            ./modules/nixos
-          ];
-        };
         zx-1 = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
@@ -79,7 +71,7 @@
           ];
         };
       };
-      
+
       darwinConfigurations."boyd" = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs; };
         modules = [
@@ -90,28 +82,5 @@
       };
 
       homeManagerModules.default = ./modules/home-manager;
-
-      devShells."x86_64-linux" =
-        let
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          php85Shell = pkgs.mkShell {
-            packages = with pkgs; [
-              php85
-              php85Packages.composer
-              laravel
-            ];
-          };
-        in
-        {
-          php85 = php85Shell;
-
-          tempest = pkgs.mkShell {
-            inputsFrom = [ php85Shell ];
-            packages = with pkgs; [
-              nodejs
-              pnpm
-            ];
-          };
-        };
     };
 }

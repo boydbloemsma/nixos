@@ -1,4 +1,4 @@
 {
   lg = "lazygit";
-  ld = "lazydocker";
+  lzd = "lazydocker";
 }

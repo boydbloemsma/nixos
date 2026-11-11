@@ -1,7 +1,5 @@
 {
   inputs,
-  pkgs,
-  lib,
   ...
 }:
 {
@@ -17,5 +15,6 @@
     ./gnome-settings.nix
     ./touchpad.nix
     ./direnv.nix
+    ./hunk.nix
   ];
 }

@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }: {
-    imports = [
-        ./core
-        ./plugins
-    ];
+{ ... }: {
+  imports = [
+    ./core
+    ./plugins
+  ];
 }
