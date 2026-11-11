@@ -107,3 +107,43 @@ SSH (`ssh vm-dev@orb`) and mounts your Mac home at `/Users/<you>`.
 Partitioning is declared with disko in `hosts/prodesk/disko.nix` (whole
 `/dev/sda`: ESP, 8G swap, ext4 root). It's reachable over Tailscale and SSH
 (key only, no root login).
+
+### Domain names (Caddy + Porkbun, tailnet only)
+
+`modules/nixos/caddy.nix` reverse-proxies `<name>.<domain>` to local services
+and gets Let's Encrypt certs through Porkbun's DNS-01 API, so nothing is
+exposed to the internet.
+
+1. Porkbun: enable **API Access** for the domain and create an API key.
+2. Porkbun DNS: add `A *.<domain>` -> prodesk's Tailscale IP (`tailscale ip -4`).
+3. Set up secrets (below).
+4. Set `caddy-proxy.domain` and add services under `caddy-proxy.hosts`.
+5. If the plugin version changes, set `hash = lib.fakeHash` once and copy the real hash from the build error.
+
+### Secrets (sops-nix)
+
+Secrets live encrypted in `secrets/prodesk.yaml`; prodesk decrypts them at
+boot with its SSH host key. Your own age key (for editing) is kept in 1Password.
+
+```sh
+nix shell nixpkgs#sops nixpkgs#age nixpkgs#ssh-to-age
+
+# 1. Your editing key; store the private key in 1Password, then:
+age-keygen -o ~/.config/sops/age/keys.txt   # mkdir -p first; copy to 1Password
+# 2. prodesk's key (from its SSH host key):
+ssh-keyscan -t ed25519 prodesk | ssh-to-age
+# 3. Paste both public keys into .sops.yaml, then create the secrets:
+sops secrets/prodesk.yaml
+```
+
+File contents:
+
+```yaml
+porkbun_api_key: pk1_...
+porkbun_api_secret_key: sk1_...
+```
+
+`git add secrets/prodesk.yaml` before building (flakes only see tracked files).
+Add more secrets by listing them under `sops.secrets` in the host config.
+After a reinstall prodesk gets a new host key: re-run step 2, update
+`.sops.yaml`, then `sops updatekeys secrets/prodesk.yaml`.

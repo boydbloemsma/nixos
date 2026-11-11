@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -77,5 +78,30 @@
   ai.open-webui = {
     enable = true;
     ollamaUrl = "http://zx-1:11434"; # MagicDNS
+  };
+
+  # Secrets: encrypted in git, decrypted at boot with prodesk's SSH host key
+  # (converted to an age key automatically). See README.
+  sops = {
+    defaultSopsFile = ../../secrets/prodesk.yaml;
+    secrets = {
+      porkbun_api_key = { };
+      porkbun_api_secret_key = { };
+    };
+    templates."porkbun.env".content = ''
+      PORKBUN_API_KEY=${config.sops.placeholder.porkbun_api_key}
+      PORKBUN_API_SECRET_KEY=${config.sops.placeholder.porkbun_api_secret_key}
+    '';
+  };
+
+  # Tailnet-only HTTPS: *.mssl.sh A record -> prodesk's Tailscale IP (100.x).
+  caddy-proxy = {
+    enable = true;
+    domain = "mssl.sh";
+    environmentFile = config.sops.templates."porkbun.env".path;
+    hosts = {
+      chat = "127.0.0.1:${toString config.services.open-webui.port}";
+      jellyfin = "127.0.0.1:8096";
+    };
   };
 }

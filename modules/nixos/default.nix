@@ -12,6 +12,7 @@
     ./gaming.nix
     ./onepassword.nix
     ./tailscale.nix
+    ./caddy.nix
   ];
 
   common.enable = lib.mkDefault true;

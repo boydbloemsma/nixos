@@ -1,0 +1,12 @@
+# Replace the placeholders (see README "Secrets"):
+#   me:      age-keygen public key (private key lives in 1Password)
+#   prodesk: ssh-keyscan prodesk | ssh-to-age
+keys:
+  - &me age1564304kcca6u7uualq2k9jnkfglk7kr27sx0pjs8de2kca4ddcrqc0far4
+  - &prodesk age1d5jtl6jc0qxnec72kxtzrgenldkfuc7qa0vlae58lc9h8jwp9fhsvjehec
+creation_rules:
+  - path_regex: secrets/prodesk\.yaml$
+    key_groups:
+      - age:
+          - *me
+          - *prodesk

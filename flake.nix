@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +44,7 @@
       nix-darwin,
       home-manager,
       disko,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -83,7 +89,10 @@
         vm-dev = mkNixos "vm-dev" { };
         prodesk = mkNixos "prodesk" {
           withHome = false;
-          modules = [ disko.nixosModules.disko ];
+          modules = [
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+          ];
         };
       };
 

@@ -37,6 +37,7 @@
       "ghostty"
       "orbstack"
       "1password"
+      "tailscale-app"
       "firefox"
       "slack"
       "microsoft-teams"
