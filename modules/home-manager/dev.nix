@@ -16,6 +16,11 @@
       };
     };
 
+    programs.jujutsu = {
+      enable = true;
+      settings.user = config.programs.git.settings.user;
+    };
+
     home.sessionVariables = {
       EDITOR = "nvim";
       SHELL = "${pkgs.fish}/bin/fish";

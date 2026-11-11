@@ -9,7 +9,6 @@
 
   config = lib.mkIf config.cli.enable {
     home.packages = with pkgs; [
-      jujutsu
       lazygit
       lazydocker
       gh
