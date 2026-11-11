@@ -19,6 +19,5 @@
   onepassword.enable = true;
   tailscale.enable = true;
   ai.enable = true;
-  lazy.enable = true;
   kamal.enable = true;
 }

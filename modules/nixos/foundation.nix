@@ -5,28 +5,18 @@
   ...
 }:
 {
-  options.foundation.enable = lib.mkEnableOption "Install foundational packages";
+  options.foundation.enable = lib.mkEnableOption "Minimal system tools for every NixOS host";
 
   config = lib.mkIf config.foundation.enable {
     environment.systemPackages = with pkgs; [
       vim
-      git
-      jujutsu
-      hunk
       neovim
-      lf
+      git
       wget
-      just
-      gh
       jq
       ripgrep
-      fd
-      fzf
-      bat
-      eza
       htop
       tree
-      devenv
     ];
   };
 }

@@ -6,7 +6,6 @@
     ./foundation.nix
     ./desktop-base.nix
     ./server-base.nix
-    ./lazy.nix
     ./ai.nix
     ./kamal.nix
     ./media.nix

@@ -13,6 +13,7 @@
     ./touchpad.nix
     ./direnv.nix
     ./hunk.nix
+    ./cli.nix
     ./dev.nix
   ];
 

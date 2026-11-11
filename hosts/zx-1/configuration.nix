@@ -34,7 +34,6 @@
 
   desktop-base.docker = false;
   desktop-base.nix-ld = false;
-  lazy.enable = true;
   ai.enable = true;
   ai.ollama.enable = true;
   kamal.enable = true;

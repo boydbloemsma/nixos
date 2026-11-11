@@ -3,5 +3,4 @@
   home.stateVersion = "24.05";
 
   dev.enable = true;
-  hunk.enable = true;
 }

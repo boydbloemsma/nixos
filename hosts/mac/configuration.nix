@@ -46,7 +46,9 @@
       "codex"
       "claude-code"
       "signal"
+      "whatsapp"
       "rectangle"
+      "spotify"
     ];
   };
 

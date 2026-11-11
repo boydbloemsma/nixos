@@ -45,7 +45,6 @@
   # 1Password CLI only; the Mac's SSH agent is forwarded by OrbStack.
   programs._1password.enable = true;
 
-  lazy.enable = true;
   virtualisation.docker.enable = true;
   ai.enable = true;
 }

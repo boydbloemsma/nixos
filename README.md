@@ -18,6 +18,16 @@ NixOS and nix-darwin configs for all my machines.
 - `modules/nixos` - NixOS modules, toggled with `<name>.enable`
 - `modules/home-manager` - Home Manager modules; `dev.enable` turns on the usual dev setup
 
+### Where packages go
+
+- **CLI tools** (jj, gh, lazygit, ripgrep, ...): `modules/home-manager/cli.nix`.
+  Shared by every Home Manager host, Mac included. `dev.enable` turns it on.
+- **System basics on NixOS** (vim, git, htop, ...): `modules/nixos/foundation.nix`.
+  Also covers root and `prodesk`, which has no Home Manager.
+- **Mac-only / not in nixpkgs for macOS** (GUI apps, `hunk`, ...): Homebrew in
+  `hosts/mac/configuration.nix`.
+- **One host only**: `home.packages` in `hosts/<host>/home.nix`.
+
 ## Applying changes
 
 ```sh

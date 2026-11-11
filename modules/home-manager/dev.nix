@@ -21,6 +21,7 @@
       SHELL = "${pkgs.fish}/bin/fish";
     };
 
+    cli.enable = lib.mkDefault true;
     code-dir.enable = lib.mkDefault true;
     neovim.enable = lib.mkDefault true;
     fish.enable = lib.mkDefault true;
