@@ -46,6 +46,7 @@
       "codex"
       "claude-code"
       "signal"
+      "rectangle"
     ];
   };
 
