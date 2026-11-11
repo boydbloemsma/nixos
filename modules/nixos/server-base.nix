@@ -7,8 +7,6 @@
     boot.loader.efi.canTouchEfiVariables = true;
 
     networking.networkmanager.enable = true;
-    time.timeZone = "Europe/Amsterdam";
-    i18n.defaultLocale = "en_US.UTF-8";
 
     users.users.boyd = {
       isNormalUser = true;
@@ -26,18 +24,6 @@
         PasswordAuthentication = false;
         PermitRootLogin = "no";
       };
-    };
-
-    nix.settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    nixpkgs.config.allowUnfree = true;
-
-    nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 15d";
     };
 
     # Always-on box: never suspend.

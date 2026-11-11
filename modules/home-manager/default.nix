@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}:
+{ inputs, lib, ... }:
 {
   imports = [
     inputs.nvf.homeManagerModules.default
@@ -16,5 +13,8 @@
     ./touchpad.nix
     ./direnv.nix
     ./hunk.nix
+    ./dev.nix
   ];
+
+  programs.home-manager.enable = lib.mkDefault true;
 }

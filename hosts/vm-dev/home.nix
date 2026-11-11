@@ -1,52 +1,7 @@
-{ pkgs, ... }: {
-  home.username = "boyd";
-  home.homeDirectory = "/home/boyd";
+{
+  # Never change this after the first install.
   home.stateVersion = "24.05";
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
-  programs.home-manager.enable = true;
-
-  programs.git = {
-    enable = true;
-
-    settings.user = {
-      name = "Boyd Bloemsma";
-      email = "boydbloemsma@gmail.com";
-    };
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-    settings = {
-      "*" = {
-        forwardAgent = false;
-        addKeysToAgent = "no";
-        compression = false;
-        serverAliveInterval = 0;
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "no";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "no";
-      };
-    };
-  };
-
-  code-dir.enable = true;
-  neovim.enable = true;
-
-  fish.enable = true;
-  bash.enable = true;
-  atuin.enable = true;
-  direnv.enable = true;
+  dev.enable = true;
   hunk.enable = true;
-
-  home.sessionVariables.SHELL = "${pkgs.fish}/bin/fish";
 }

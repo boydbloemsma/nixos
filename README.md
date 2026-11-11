@@ -1,55 +1,68 @@
-# Installing
+# nixos
 
-When adding a new host you will need to generate a new host.nix file.
-The following command copies it to `/etc/nixos/` change this to the new host location.
+NixOS and nix-darwin configs for all my machines.
 
-```sh
-nix run home-manager/master -- init && \
-sudo cp ~/.config/home-manager/home.nix /etc/nixos/
-```
+| Host      | Type                    | Notes                               |
+| --------- | ----------------------- | ----------------------------------- |
+| `t14`     | NixOS laptop            | GNOME, dev setup                    |
+| `zx-1`    | NixOS desktop           | Gaming PC, Ollama, Jellyfin         |
+| `prodesk` | NixOS server (headless) | Jellyfin, Open WebUI, uses disko    |
+| `vm-dev`  | NixOS in OrbStack       | Dev container on the Mac            |
+| `boyd`    | nix-darwin (MacBook)    | Config lives in `hosts/mac`         |
 
-You can now use this host.nix file in a new host directory.
+## Layout
 
-## Installing the OS on a new host
+- `flake.nix` - host list; `mkNixos` wires up `modules/nixos` and Home Manager
+- `hosts/<host>/configuration.nix` - system config for a host
+- `hosts/<host>/home.nix` - Home Manager config for a host
+- `modules/nixos` - NixOS modules, toggled with `<name>.enable`
+- `modules/home-manager` - Home Manager modules; `dev.enable` turns on the usual dev setup
 
-First download the NixOS ISO from [here](https://nixos.org/download/) and flash it to a usb drive.
-
-> hint: if you are using linux you can use `dd`
-
-Then the easiest thing to do is to install `git` and `vim` so you can clone the repo and edit things.
-Do this by adding them to the `systemPackages` in `/etc/nixos/configuration.nix` and running the following command.
-
-```sh
-sudo nixos-rebuild switch
-```
-
-Now you can create a backup of the current NixOS config in case something goes wrong,
-and because we will need the hardware-configuration.nix
+## Applying changes
 
 ```sh
-sudo cp -r /etc/nixos ~/nixos-backup
+# NixOS (the hostname matches the flake name, so `#<host>` is optional)
+sudo nixos-rebuild switch --flake ~/nixos#<host>
+
+# Mac
+sudo darwin-rebuild switch --flake ~/nixos#boyd
 ```
 
-When this is done we can remove the current NixOS config.
+## Updating
 
 ```sh
-sudo rm -rf /etc/nixos
+nix flake update   # bump all inputs, then rebuild as above
+sudo nix-collect-garbage --delete-older-than 15d
 ```
 
-> hint: You might need to change the ownership before you can remove it `sudo chown -R boyd:users /etc/nixos`
+Garbage collection also runs weekly on the NixOS hosts.
 
-Now clone the repo to `/etc/nixos`
+## Adding a new NixOS host
 
-And finally install for the host you want.
+1. Install NixOS from the [ISO](https://nixos.org/download/) and enable
+   flakes plus `git` in `/etc/nixos/configuration.nix`, then
+   `sudo nixos-rebuild switch`.
+2. Clone this repo to `~/nixos`.
+3. Create `hosts/<host>/`:
+   - copy `/etc/nixos/hardware-configuration.nix` into it
+   - add a `configuration.nix` (copy one from a similar host; keep
+     `system.stateVersion` from the generated config)
+   - add a `home.nix` with `home.stateVersion` and the modules you want
+4. Add `<host> = mkNixos "<host>" { };` to `flake.nix` and `git add` the new files.
+5. `sudo nixos-rebuild switch --flake ~/nixos#<host>`
 
-```sh
-sudo nixos-rebuild switch --flake /etc/nixos/#zx-1
-```
+## Mac (nix-darwin)
 
-When this is done you can move it anywhere since we use home manager.
-Like the user directory: `~/nixos`
+1. Install Nix (e.g. the [Determinate installer](https://determinate.systems/nix-installer/))
+   and [Homebrew](https://brew.sh).
+2. Clone this repo to `~/nixos`.
+3. First run: `sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/nixos#boyd`.
+   After that, use `darwin-rebuild` as above.
 
-## Installing on a MacBook with OrbStack
+GUI apps and a few CLIs come from Homebrew (see `hosts/mac/configuration.nix`).
+Homebrew runs with `cleanup = "zap"`, so anything not listed there gets removed.
+
+## vm-dev (OrbStack)
 
 `vm-dev` runs as an OrbStack NixOS machine (an LXC container), so there's no
 bootloader, disk partitioning or hardware config. OrbStack handles networking,
@@ -79,28 +92,8 @@ SSH (`ssh vm-dev@orb`) and mounts your Mac home at `/Users/<you>`.
    sudo nixos-rebuild switch --flake ~/nixos#vm-dev
    ```
 
-# Updating
+## prodesk (headless server)
 
-What to do when updating nix
-
-## Packages
-
-If you change the configuration run this
-
-```sh
-sudo nixos-rebuild switch --flake ~/nixos/#nixos
-```
-
-## OS
-
-Run the following in the nixos directory if you want to update to a newer NixOS version
-
-```sh
-sudo nix flake update
-```
-
-Remove stale versions of the OS using the following command
-
-```sh
-sudo nix-collect-garbage --delete-older-than 15d
-```
+Partitioning is declared with disko in `hosts/prodesk/disko.nix` (whole
+`/dev/sda`: ESP, 8G swap, ext4 root). It's reachable over Tailscale and SSH
+(key only, no root login).

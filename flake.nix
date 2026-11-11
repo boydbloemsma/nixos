@@ -1,5 +1,5 @@
 {
-  description = "Nixos config flake";
+  description = "NixOS and nix-darwin configs";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -34,50 +34,65 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       nix-darwin,
+      home-manager,
       disko,
       ...
     }@inputs:
-    {
-      nixosConfigurations = {
-        zx-1 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/zx-1/configuration.nix
-            ./modules/nixos
-          ];
-        };
-        prodesk = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            disko.nixosModules.disko
-            ./hosts/prodesk/configuration.nix
-            ./modules/nixos
-          ];
-        };
-        t14 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/t14/configuration.nix
-            ./modules/nixos
-          ];
-        };
-        vm-dev = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/vm-dev/configuration.nix
-            ./modules/nixos
+    let
+      # Home Manager wiring shared by every host; the user's config lives in
+      # hosts/<host>/home.nix on top of our home-manager modules.
+      homeManager = user: host: {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = { inherit inputs; };
+          backupFileExtension = "backup";
+          users.${user}.imports = [
+            ./hosts/${host}/home.nix
+            self.homeManagerModules.default
           ];
         };
       };
 
-      darwinConfigurations."boyd" = nix-darwin.lib.darwinSystem {
+      mkNixos =
+        host:
+        {
+          withHome ? true,
+          modules ? [ ],
+        }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${host}/configuration.nix
+            ./modules/nixos
+          ]
+          ++ nixpkgs.lib.optionals withHome [
+            home-manager.nixosModules.default
+            (homeManager "boyd" host)
+          ]
+          ++ modules;
+        };
+    in
+    {
+      nixosConfigurations = {
+        t14 = mkNixos "t14" { };
+        zx-1 = mkNixos "zx-1" { };
+        vm-dev = mkNixos "vm-dev" { };
+        prodesk = mkNixos "prodesk" {
+          withHome = false;
+          modules = [ disko.nixosModules.disko ];
+        };
+      };
+
+      darwinConfigurations.boyd = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/mac/configuration.nix
-          inputs.home-manager.darwinModules.home-manager
-          ./hosts/mac/home-manager.nix
+          home-manager.darwinModules.home-manager
+          (homeManager "ede-mac048" "mac")
         ];
       };
 

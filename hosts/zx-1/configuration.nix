@@ -1,16 +1,9 @@
 {
-  inputs,
-  ...
-}:
-
-{
   imports = [
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
-    ./home-manager.nix
   ];
 
-  networking.hostName = "ZX-1";
+  networking.hostName = "zx-1";
 
   system.stateVersion = "24.11";
 

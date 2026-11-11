@@ -1,6 +1,7 @@
 { lib, ... }:
 {
   imports = [
+    ./common.nix
     ./shell.nix
     ./foundation.nix
     ./desktop-base.nix
@@ -14,6 +15,7 @@
     ./tailscale.nix
   ];
 
+  common.enable = lib.mkDefault true;
   foundation.enable = lib.mkDefault true;
   desktop-base.enable = lib.mkDefault true;
   shell.enable = lib.mkDefault true;
