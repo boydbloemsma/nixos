@@ -26,6 +26,9 @@
       };
     };
 
+    # Lets remote `nixos-rebuild --target-host` copy locally built (unsigned) paths.
+    nix.settings.trusted-users = [ "@wheel" ];
+
     # Always-on box: never suspend.
     systemd.targets.sleep.enable = false;
     systemd.targets.suspend.enable = false;

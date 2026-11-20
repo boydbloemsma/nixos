@@ -23,7 +23,11 @@
   desktop-base.enable = false;
   server-base.enable = true;
 
-  tailscale.enable = true;
+  tailscale = {
+    enable = true;
+    # Expose only the NAS to the tailnet.
+    advertiseRoutes = [ "192.168.1.110/32" ];
+  };
 
   hardware.graphics = {
     enable = true;
@@ -63,17 +67,17 @@
     "video"
   ];
 
-  # Uncomment once the NAS is set up; fill in its IP and export path.
-  # fileSystems."/mnt/media" = {
-  #   device = "192.168.1.x:/volume/media";
-  #   fsType = "nfs";
-  #   options = [
-  #     "x-systemd.automount"
-  #     "noauto"
-  #     "_netdev"
-  #     "x-systemd.idle-timeout=600"
-  #   ];
-  # };
+  # UniFi NAS "media" share; export is restricted to prodesk's LAN IP.
+  fileSystems."/mnt/media" = {
+    device = "192.168.1.110:/volume/504d4d5f-73af-44be-8a5a-626e0471f8ba/.srv/.unifi-drive/media/.data";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "_netdev"
+      "x-systemd.idle-timeout=600"
+    ];
+  };
 
   ai.open-webui = {
     enable = true;

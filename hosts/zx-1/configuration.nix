@@ -38,7 +38,11 @@
   ai.ollama.enable = true;
   kamal.enable = true;
   onepassword.enable = true;
-  tailscale.enable = true;
+  tailscale = {
+    enable = true;
+    # Always on the home LAN: reach the NAS directly, not via prodesk.
+    acceptRoutes = false;
+  };
   gaming.enable = true;
   media.enable = true;
   media.jellyfin.enable = true;
