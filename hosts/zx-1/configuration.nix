@@ -45,6 +45,4 @@
   };
   gaming.enable = true;
   media.enable = true;
-  media.jellyfin.enable = true;
-  media.jellyfin.user = "boyd";
 }
